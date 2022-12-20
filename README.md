@@ -1,6 +1,6 @@
 # Winbhaiyu
 
-<img align="right" src="https://github.com/halal-beef/res/blob/main/Main%20screen.png" width="750" alt="Winbhaiyu">
+<img align="right" src="https://github.com/halal-beef/res/blob/main/Main%20screen.png" width="600" alt="Winbhaiyu">
 
 ## ⚠️ **Warning**
 
