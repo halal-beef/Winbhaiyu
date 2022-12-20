@@ -1,0 +1,91 @@
+﻿<Window x:Class="Winbhaiyu.Dialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Winbhaiyu"
+        mc:Ignorable="d"
+        Title="Dialog" Height="245" Width="449" WindowStartupLocation="CenterOwner" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Loaded="Window_Loaded" Topmost="True">
+    <Border CornerRadius="8" Margin="10" Background="#FF202020" Name="mai" Opacity="0">
+        <Grid>
+            <Button x:Name="yes" BorderThickness="0" Foreground="White" FontSize="12" FontFamily="Segoe UI Light" Content="Yes" Margin="156,200,215,4" Click="yes_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF191919"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF252525"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Canvas Margin="0,0,250,97" Name="warning">
+                <Canvas.Effect>
+                    <DropShadowEffect BlurRadius="8" Direction="-90" Color="#d29922" RenderingBias="Quality" ShadowDepth="2"/>
+                </Canvas.Effect>
+
+                <Canvas.Resources>
+                    <Geometry x:Key="pathData">M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z</Geometry>
+                </Canvas.Resources>
+                <Path Stroke="#d29922"
+          Data="{StaticResource pathData}" Height="50" Stretch="Fill" Width="51" HorizontalAlignment="Left" Canvas.Top="10" VerticalAlignment="Center" Canvas.Left="189"/>
+            </Canvas>
+            <Canvas Opacity="0" Name="error" Margin="0,0,250,72">
+                <Canvas.Effect>
+                    <DropShadowEffect BlurRadius="8" Direction="-90" Color="#d29922" RenderingBias="Quality" ShadowDepth="2"/>
+                </Canvas.Effect>
+
+                <Canvas.Resources>
+                    <Geometry x:Key="pathData">M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z</Geometry>
+                </Canvas.Resources>
+                <Path Stroke="#eb4034"
+          Data="{StaticResource pathData}" Height="50" Stretch="Fill" Width="51" HorizontalAlignment="Left" Canvas.Top="10" VerticalAlignment="Center" Canvas.Left="189"/>
+            </Canvas>
+            <TextBlock TextWrapping="Wrap" Canvas.Top="124" Margin="10,88,10,35" Foreground="White" TextAlignment="Center" FontSize="15" FontFamily="Segoe UI Light" Text="Text Here" Name="Message"/>
+
+            <TextBlock Foreground="#d29922" FontFamily="Segoe UI Light" FontSize="15" TextAlignment="Center" Text="Warning!" Margin="178,66,179,137" Name="warn"/>
+            <Button x:Name="no" BorderThickness="0" Foreground="White" FontSize="12" FontFamily="Segoe UI Light" Content="No" Margin="219,200,154,4" Click="no_Click">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF191919"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF252525"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+    </Border>
+</Window>
