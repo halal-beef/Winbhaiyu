@@ -1,9 +1,0 @@
-C:\Users\smellydonkeyfart\source\repos\Winbhaiyu\Winbhaiyu\build\adb.exe
-C:\Users\smellydonkeyfart\source\repos\Winbhaiyu\Winbhaiyu\build\AdbWinApi.dll
-C:\Users\smellydonkeyfart\source\repos\Winbhaiyu\Winbhaiyu\build\AdbWinUsbApi.dll
-C:\Users\smellydonkeyfart\source\repos\Winbhaiyu\Winbhaiyu\build\D3DCompiler_47_cor3.dll
-C:\Users\smellydonkeyfart\source\repos\Winbhaiyu\Winbhaiyu\build\PenImc_cor3.dll
-C:\Users\smellydonkeyfart\source\repos\Winbhaiyu\Winbhaiyu\build\PresentationNative_cor3.dll
-C:\Users\smellydonkeyfart\source\repos\Winbhaiyu\Winbhaiyu\build\vcruntime140_cor3.dll
-C:\Users\smellydonkeyfart\source\repos\Winbhaiyu\Winbhaiyu\build\wpfgfx_cor3.dll
-C:\Users\smellydonkeyfart\source\repos\Winbhaiyu\Winbhaiyu\build\Winbhaiyu.exe
