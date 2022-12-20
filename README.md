@@ -21,9 +21,9 @@ This project is in an early stage, all the files here have been contributed by o
 
 <summary><b><strong>Program Screenshots</strong></b></summary>
 
-  <img align="Left" src="https://github.com/halal-beef/res/blob/main/Loading%20screen.png" width="750" alt="Winbhaiyu">
-  <img align="Middle" src="https://github.com/halal-beef/res/blob/main/Warning%20screen.png" width="750" alt="Winbhaiyu">
-  <img align="Right" src="https://github.com/halal-beef/res/blob/main/Main%20screen.png" width="750" alt="Winbhaiyu">
+  <img align="Left" src="https://github.com/halal-beef/res/blob/main/Loading%20screen.png" width="300" alt="Winbhaiyu">
+  <img align="Middle" src="https://github.com/halal-beef/res/blob/main/Warning%20screen.png" width="300" alt="Winbhaiyu">
+  <img align="Right" src="https://github.com/halal-beef/res/blob/main/Main%20screen.png" width="300" alt="Winbhaiyu">
 
 </details>  
   
