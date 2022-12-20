@@ -19,6 +19,7 @@ This program is x64 only and will stay like that, sorry pentium 4 users
 - [X] Booting UEFI (FROM RECOVERY MODE)
 - [ ] Support custom partition sizes
 - [ ] Updating drivers
+- [ ] Reinstalling windows w/o repartitioning
 
 <details> 
 
