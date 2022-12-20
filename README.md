@@ -1,6 +1,6 @@
 # Winbhaiyu
 
-<img align="right" src="https://github.com/halal-beef/res/blob/main/Main%20screen.png" width="600" alt="Winbhaiyu">
+<img align="right" src="https://github.com/halal-beef/res/blob/main/Main%20screen.png" width="750" alt="Winbhaiyu">
 
 ## ⚠️ **Warning**
 
@@ -14,10 +14,19 @@ This project is in an early stage, all the files here have been contributed by o
 - [X] Fully install windows and boot efi with minimal user intervention
 - [X] Able to grab latest resources (UEFI/Drivers)
 - [X] Booting UEFI (FROM RECOVERY MODE)
-- [] Support custom partition sizes
-- [] Updating drivers
+- [ ] Support custom partition sizes
+- [ ] Updating drivers
 
+<details> 
 
+<summary><b><strong>Program Screenshots</strong></b></summary>
+
+  <img align="Left" src="https://github.com/halal-beef/res/blob/main/Loading%20screen.png" width="750" alt="Winbhaiyu">
+  <img align="Middle" src="https://github.com/halal-beef/res/blob/main/Warning%20screen.png" width="750" alt="Winbhaiyu">
+  <img align="Right" src="https://github.com/halal-beef/res/blob/main/Main%20screen.png" width="750" alt="Winbhaiyu">
+
+</details>  
+  
 ## Contributors
 
 <details> 
