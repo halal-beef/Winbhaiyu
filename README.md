@@ -8,7 +8,7 @@ We're not responsible for bricked devices, missing recovery partitions, dead mic
 
 This project is in an early stage, all the files here have been contributed by other users, here you will find a guide with the working files we managed to get. This is a delicate process, do it under your own risk and follow all the steps carefully.
 
-## Notice
+### Notice
 
 This program is x64 only and will stay like that, sorry pentium 4 users
 
