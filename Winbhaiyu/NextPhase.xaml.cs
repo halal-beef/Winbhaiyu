@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -115,6 +115,8 @@ namespace Winbhaiyu
 
                     await Task.Factory.StartNew(Download);
 
+                    poo.ScrollToEnd();
+
                     ReportProgress(0, "Executing: fastboot flash partition:0 gpt_both0.bin");
                     vyu.Flash("gpt_both0.bin", "partition:0");
                     vyu.Command("erase:userdata");
@@ -122,6 +124,9 @@ namespace Winbhaiyu
                     vyu.Command("erase:cache");
                     await Task.Delay(500);
                     ReportProgress(0, "Flashing TWRP, Please Wait...");
+
+                    poo.ScrollToEnd();
+
                     var BootRecovery = new Action(() =>
                     {
                         vyu.Reboot(Fastboot.RebootOptions.Bootloader);
@@ -443,6 +448,7 @@ namespace Winbhaiyu
 
                     var BootUEFI = new Action(async () =>
                     {
+                        ReportProgress(0, "Booting UEFI...");
                         Fastboot vyu = new();
                         StartADB("shell twrp reboot bootloader").Wait();
                         Task.Delay(10000).Wait(); // 10 Second Delay
