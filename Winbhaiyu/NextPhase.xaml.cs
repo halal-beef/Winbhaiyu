@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -728,9 +728,182 @@ namespace Winbhaiyu
             }
         }
 
-        private void Update_Click(object sender, RoutedEventArgs e)
+        private async void Update_Click(object sender, RoutedEventArgs e)
         {
-            ReportProgress(0, "Not implemented yet");
+            if (await messagebox("Make sure no other android device is connected except your Poco X3 Pro, not following this may lead to consequences you will regret, THIS PROCESS CANNOT BE STOPPED WHEN STARTED! MAKE SURE ALL YOUR DATA IS BACKED UP! Connect your phone in fastboot mode and press continue to start.", "Continue", "Cancel", false, 12) == "Continue")
+            {
+                ReportProgress(0, "Updating Drivers...");
+            connection:
+                Canvas.SetZIndex(block, 2);
+                FadeIn(block);
+                await Task.Delay(1000);
+                Fastboot vyu = new();
+                try
+                {
+                    vyu.Connect();
+                }
+                catch
+                {
+                    FadeOut(block);
+                    await Task.Delay(1000);
+                    if (await messagebox("Unable to connect to phone! Make sure drivers are installed and you have connected your phone in fastboot mode then press continue.", "Continue", "Cancel", true, 12) == "Continue")
+                    {
+                        goto connection;
+                    }
+                    else
+                    {
+                        WriteLine("Driver update canceled.");
+                        return;
+                    }
+                }
+                ReportProgress(0, "Executing: fastboot getvar:product");
+                string prod = vyu.Command("getvar:product").Payload.Trim();
+                if (prod == "vayu" || prod == "bhima")
+                {
+                    ReportProgress(0, "Poco X3 Pro Detected! Continuing...");
+                    ReportProgress(0, "Downloading Files...");
+                    var Download = new Action(() =>
+                    {
+                        string Drivers = JObject.Parse(DownloadString("https://api.github.com/repos/degdag/Vayu-Drivers/releases/latest"))["assets"][0]["browser_download_url"].ToString().Replace("{", "").Replace("}", "");
+                        string DriverUpdater = JObject.Parse(DownloadString("https://api.github.com/repos/WoA-Project/DriverUpdater/releases/latest"))["assets"][1]["browser_download_url"].ToString().Replace("{", "").Replace("}", "");
+                        string UEFI = JObject.Parse(DownloadString("https://api.github.com/repos/degdag/edk2-msm/releases/latest"))["assets"][0]["browser_download_url"].ToString().Replace("{", "").Replace("}", "");
+
+                        DownloadFile("https://github.com/Icesito68/Port-Windows-11-Poco-X3-pro/releases/download/Recoveries/twrp-3.7.0_12-vayu-mod.img", "twrp-3.7.0_12-vayu.img");
+                        ReportProgress(0, "Finished Downloading TWRP");
+                        DownloadFile("https://github.com/Icesito68/Port-Windows-11-Poco-X3-pro/releases/download/binaries/DisMTP", "DisMTP");
+                        ReportProgress(0, "Finished Downloading MTP Disabling Script");
+                        DownloadFile(Drivers, "Drivers.zip");
+                        ReportProgress(0, "Finished Downloading Drivers");
+                        DownloadFile(DriverUpdater, "DriverUpdater.zip");
+                        ReportProgress(0, "Finished Downloading Drivers");
+                    });
+
+                    await Task.Factory.StartNew(Download);
+
+                    var BootRecovery = new Action(() =>
+                    {
+                        ReportProgress(0, "Booting TWRP...");
+                        vyu.Flash("twrp-3.7.0_12-vayu.img", "recovery");
+                        vyu.Reboot(Fastboot.RebootOptions.Recovery);
+                        vyu.Disconnect();
+                        StartADB("wait-for-usb-recovery").Wait();
+                    });
+
+                    await Task.Factory.StartNew(BootRecovery);
+                    poo.ScrollToEnd();
+
+                    var MSC = new Action(() =>
+                    {
+                        ReportProgress(0, "We are in TWRP!");
+                        ReportProgress(0, "Putting phone into mass storage mode please wait...");
+                        StartADB("push DisMTP /sbin").Wait();
+                        StartADB("shell sh /sbin/DisMTP").Wait();
+                        StartADB("wait-for-usb-recovery").Wait();
+                        StartADB("shell msc.sh").Wait();
+                    });
+
+                    await Task.Factory.StartNew(MSC);
+                    poo.ScrollToEnd();
+
+                    var DiskpartLetter = new Action(async () =>
+                    {
+                        Task.Delay(1500).Wait(); // Wait for disks to pick up.
+                        ReportProgress(0, "Assigning Letter...");
+                        string vols = await StartDiskpart("list volume\n");
+                        string[] split = vols.Split('\n');
+                        string windowspart = split.First(w => w.Contains("WINVAYU")).Trim();
+                        int indexwin = Int32.Parse(windowspart.Split(new string[] { " " }, StringSplitOptions.None)[1]);
+                        ReportProgress(0, windowspart);
+                        StartDiskpart($"sel volume {indexwin}\nassign letter=x").Wait();
+                        ReportProgress(0, "Letter Assigned");
+                    });
+
+                    await Task.Factory.StartNew(DiskpartLetter);
+
+                    poo.ScrollToEnd();
+
+                    var Unzip = new Action(() =>
+                    {
+                        ReportProgress(0, "Unzipping files");
+                        ZipFile.ExtractToDirectory("DriverUpdater.zip", Directory.GetCurrentDirectory());
+                        ZipFile.ExtractToDirectory("Drivers.zip", Directory.GetCurrentDirectory());
+                        ReportProgress(0, "Unzipped files");
+                    });
+
+                    await Task.Factory.StartNew(Unzip);
+
+                    string DisplayManufacturer = "";
+                    string CmdLine = await StartADB("shell cat /proc/cmdline");
+
+                    var GetDisplay = new Action(() =>
+                    {
+
+                        if (CmdLine.Contains("msm_drm.dsi_display0=dsi_j20s_42_02_0b_video_display:"))
+                        {
+                            DisplayManufacturer = "Huaxing";
+                            ReportProgress(0, "Display Manufacturer: Huaxing");
+                        }
+                        else
+                        {
+                            DisplayManufacturer = "Tianma";
+                            ReportProgress(0, "Display Manufacturer: Tianma");
+                        }
+                    });
+
+                    await Task.Factory.StartNew(GetDisplay);
+                    poo.ScrollToEnd();
+
+                    var ModifyDrivers = new Action(() =>
+                    { 
+                        if (DisplayManufacturer == "Huaxing")
+                        {
+                            ReportProgress(0, "Editing touch driver to support huaxing...");
+                            File.Delete("Vayu-Drivers-Full\\components\\QC8150\\Device\\DEVICE.SOC_QC8150.VAYU\\Drivers\\Touch\\j20s_novatek_ts_fw01.bin");
+                            File.Move("Vayu-Drivers-Full\\components\\QC8150\\Device\\DEVICE.SOC_QC8150.VAYU\\Drivers\\Touch\\j20s_novatek_ts_fw02.bin", "Vayu-Drivers-Full\\components\\QC8150\\Device\\DEVICE.SOC_QC8150.VAYU\\Drivers\\Touch\\j20s_novatek_ts_fw01.bin");
+                            ReportProgress(0, "Finished editing");
+                        }
+                    });
+
+                    await Task.Factory.StartNew(ModifyDrivers);
+
+                    var InstallDrivers = new Action(() =>
+                    {
+                        ReportProgress(0, "Installing drivers...");
+                        ProcessStartInfo startInfo = new ProcessStartInfo();
+                        startInfo.FileName = "DriverUpdater.exe";
+                        startInfo.Arguments = @" -d Vayu-Drivers-Full\definitions\Desktop\ARM64\Internal\vayu.txt -r Vayu-Drivers-Full -p X:";
+                        startInfo.UseShellExecute = false;
+                        startInfo.CreateNoWindow = false;
+                        Process process = new();
+                        process.StartInfo = startInfo;
+                        process.Start();
+                        process.WaitForExit();
+                    });
+
+                    await Task.Factory.StartNew(InstallDrivers);
+
+                    ReportProgress(0, "Finished Installing Drivers");
+
+                    poo.ScrollToEnd();
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        FadeOut(block);
+                        Task.Delay(1000).Wait();
+                        Canvas.SetZIndex(block, -2);
+                    });
+                }
+                else
+                {
+                    await Dispatcher.Invoke(async () =>
+                    {
+                        FadeOut(block);
+                        await Task.Delay(1000);
+                        await messagebox("Unsupported product detected!", "Okay", ":(", true, 12);
+                    });
+
+                }
+            }
         }
 
         private async void Boot_Click(object sender, RoutedEventArgs e)
@@ -852,26 +1025,40 @@ namespace Winbhaiyu
         }
             private void Drag_MouseDown(object sender, MouseButtonEventArgs e)
             {
-                if (e.ChangedButton == MouseButton.Left && Panel.GetZIndex(block) != 2)
+                if (e.ChangedButton == MouseButton.Left)
                 {
                     this.DragMove();
                 }
             }
 
-        private void Close_MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Close_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.ChangedButton == MouseButton.Left)
+            if(e.ChangedButton == MouseButton.Left && Panel.GetZIndex(block) != 2)
             {
+                Shift(Borf, Borf.Margin, new Thickness(336));
+                await Task.Delay(1000);
                 Environment.Exit(0);
             }
         }
 
-        private void Mini_MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Mini_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if(e.ChangedButton == MouseButton.Left)
             {
+                Shift(Borf, Borf.Margin, new Thickness(336));
+                await Task.Delay(1000);
                 this.WindowState = WindowState.Minimized;
             }
+        }
+
+        private void Rein_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            Shift(Borf, Borf.Margin, new Thickness(10));
         }
     }
 }

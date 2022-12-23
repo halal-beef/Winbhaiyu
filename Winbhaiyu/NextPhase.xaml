@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Winbhaiyu"
         mc:Ignorable="d"
-        Title="Winbhaiyu" Height="270" Width="830" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Loaded="Window_Loaded" Topmost="True">
-    <Border CornerRadius="8" Margin="10" Background="#FF202020">
+        Title="Winbhaiyu" Height="326" Width="830" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Activated="Window_Activated" Background="Transparent" Loaded="Window_Loaded" Topmost="True">
+    <Border CornerRadius="8" Margin="10" Name="Borf" Background="#FF202020">
         <Border.Effect>
             <DropShadowEffect BlurRadius="10" Direction="-90" Color="Black" RenderingBias="Quality" ShadowDepth="2"/>
         </Border.Effect>
-        <Grid Name="gr" Margin="0,250,0,0">
+        <Grid Name="gr" Margin="0,0,0,0">
             <Border CornerRadius="0,0,8,8" Background="Black" Panel.ZIndex="-1" Opacity="0" Name="block" Margin="0,42,0,0"/>
-            <Border CornerRadius="8,8,0,0" Background="#FF191919" Margin="0,0,0,208" Name="Drag" MouseDown="Drag_MouseDown">
+            <Border CornerRadius="8,8,0,0" Background="#FF191919" Margin="0,0,0,264" Name="Drag" MouseDown="Drag_MouseDown">
                 <Grid>
                     <TextBlock Foreground="White" FontFamily="Segoe UI Light" FontSize="15" TextAlignment="Center" Text="Winbhaiyu" Margin="10,10,733,10"/>
                     <Border Name="Close" CornerRadius="200" Background="#f43c38" Margin="780,12,15,15" MouseDown="Close_MouseDown"/>
                     <Border Name="Mini" CornerRadius="200" Background="#ffc414" Margin="760,12,35,15" MouseDown="Mini_MouseDown"/>
                 </Grid>
             </Border>
-            <Button Name="InstallWindows" Margin="10,47,671,161" BorderThickness="0" Foreground="White" FontSize="15" FontFamily="Segoe UI Light" Content="Install Windows" Click="InstallWindows_Click">
+            <Button Name="InstallWindows" Margin="10,52,671,209" BorderThickness="0" Foreground="White" FontSize="15" FontFamily="Segoe UI Light" Content="Install Windows" Click="InstallWindows_Click">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="#FF191919"/>
@@ -45,7 +45,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="UninstallWindows" Margin="10,98,671,110" BorderThickness="0" Foreground="White" FontSize="15" FontFamily="Segoe UI Light" Content="Uninstall Windows" Click="UninstallWindows_Click">
+            <Button x:Name="UninstallWindows" Margin="10,152,671,110" BorderThickness="0" Foreground="White" FontSize="15" FontFamily="Segoe UI Light" Content="Uninstall Windows" Click="UninstallWindows_Click">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="#FF191919"/>
@@ -71,7 +71,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="Update" Margin="10,148,671,60" BorderThickness="0" Foreground="White" FontSize="15" FontFamily="Segoe UI Light" Content="Update Drivers" Click="Update_Click">
+            <Button x:Name="Update" Margin="10,201,671,60" BorderThickness="0" Foreground="White" FontSize="15" FontFamily="Segoe UI Light" Content="Update Drivers" Click="Update_Click">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="#FF191919"/>
@@ -97,7 +97,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="Boot" Margin="10,198,671,10" BorderThickness="0" Foreground="White" FontSize="15" FontFamily="Segoe UI Light" Content="Boot UEFI" Click="Boot_Click">
+            <Button x:Name="Boot" Margin="10,251,671,10" BorderThickness="0" Foreground="White" FontSize="15" FontFamily="Segoe UI Light" Content="Boot UEFI" Click="Boot_Click">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="#FF191919"/>
@@ -123,11 +123,37 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Border CornerRadius="8" Background="#FF191919" Margin="148,47,10,10">
+            <Border CornerRadius="8" Background="#FF191919" Margin="148,52,10,10">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Name="poo">
                     <TextBox Margin="5,8,5,8" Name="consout" Background="#FF191919" Foreground="White" IsReadOnly="True" BorderThickness="0" FontSize="15" Text="" FontFamily="Segoe UI"/>
                 </ScrollViewer>
             </Border>
+            <Button x:Name="Rein" Margin="10,102,671,159" BorderThickness="0" Foreground="White" FontSize="15" FontFamily="Segoe UI Light" Content="Reinstall Windows" Click="Rein_Click">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#FF191919"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF252525"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
     </Border>
 </Window>

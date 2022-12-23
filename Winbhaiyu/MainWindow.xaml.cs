@@ -90,7 +90,7 @@ namespace Winbhaiyu
             await Task.Delay(6000);
             FadeOut(Everything);
             await Task.Delay(1000);
-            Shift(bor, bor.Margin, new Thickness(10,125,10,125));
+            Shift(bor, bor.Margin, new Thickness(10,95,10,95));
             await Task.Delay(1000);
             new NextPhase().Show();
             this.Close();
