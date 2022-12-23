@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -35,6 +35,7 @@ namespace Winbhaiyu
         private void DownloadFile(string Url, string Filename)
         {
             HttpClient hc = new();
+            hc.Timeout = Timeout.InfiniteTimeSpan;
             using (FileStream fs0 = File.Create(Filename))
             {
                 HttpResponseMessage hrm4 = hc.GetAsync(Url).GetAwaiter().GetResult();
@@ -45,6 +46,7 @@ namespace Winbhaiyu
         private string DownloadString(string Url)
         {
             HttpClient hc = new();
+            hc.Timeout = Timeout.InfiniteTimeSpan;
             hc.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Winbhaiyu", "1"));
             HttpResponseMessage hrm4 = hc.GetAsync(Url).GetAwaiter().GetResult();
             using (HttpContent content = hrm4.Content)
