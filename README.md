@@ -32,10 +32,11 @@ This program is x64 only and will stay like that, sorry pentium 4 users
 </details>  
   
 ## Tested Devices 
-[X] 8/256 Huaxing Panel
-[X] 8/256 Tianma Panel
-[ ] 6/128 Huaxing Panel
-[ ] 6/128 Tianma Panel
+
+- [X] 8/256 Huaxing Panel
+- [X] 8/256 Tianma Panel
+- [ ] 6/128 Huaxing Panel
+- [ ] 6/128 Tianma Panel
 
 ## Contributors
 
