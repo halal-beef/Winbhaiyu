@@ -110,7 +110,7 @@ namespace Winbhaiyu
                         DownloadFile(Drivers, "Drivers.zip");
                         ReportProgress(0, "Finished Downloading Drivers");
                         DownloadFile(DriverUpdater, "DriverUpdater.zip");
-                        ReportProgress(0, "Finished Downloading Drivers");
+                        ReportProgress(0, "Finished Downloading DriverUpdater");
                         DownloadFile(UEFI, "UEFI.zip");
                         ReportProgress(0, "Finished Downloading UEFI");
                     });
