@@ -54,6 +54,6 @@ This program is x64 only and will stay like that, sorry pentium 4 users
 
 - [mashed-potatoes](https://github.com/mashed-potatoes) ```Made the fastboot lib which i slightly modified```
 
-- Joviet Maniebo ```Tested 8/256 Tianma```
+- Jovet Maniebo ```Tested 8/256 Tianma```
 </details>  
 
