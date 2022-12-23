@@ -31,6 +31,12 @@ This program is x64 only and will stay like that, sorry pentium 4 users
 
 </details>  
   
+## Tested Devices 
+[X] 8/256 Huaxing Panel
+[X] 8/256 Tianma Panel
+[ ] 6/128 Huaxing Panel
+[ ] 6/128 Tianma Panel
+
 ## Contributors
 
 <details> 
@@ -46,5 +52,7 @@ This program is x64 only and will stay like that, sorry pentium 4 users
 - [lybxlpsv](https://github.com/lybxlpsv) ```Made the name "Winbhaiyu"```
 
 - [mashed-potatoes](https://github.com/mashed-potatoes) ```Made the fastboot lib which i slightly modified```
+
+- Joviet Maniebo ```Tested 8/256 Tianma```
 </details>  
 
