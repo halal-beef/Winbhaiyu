@@ -44,7 +44,7 @@ This program is x64 only and will stay like that, sorry pentium 4 users
 
 <summary><b><strong>Credits</strong></b></summary>
 
-- [halal-beef](https://github.com/halal-beef) ```Made this program and this repo :P ```
+- [halal-beef](https://github.com/halal-beef) ```Made this program and this repo```
   
 - [gus33000](https://github.com/gus33000) ```Made the MSC script```
 
