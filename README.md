@@ -1,3 +1,12 @@
+## Why did I archive this repo?
+
+I originally aimed this project for lazy people and people who can't follow a guide, the two main reasons i have decided to archive this program are
+
+- If you can't follow written guides what is the point of spoonfeeding you? You aren't going to learn anything at all.
+
+- The program was unstable for some users.
+
+
 # Winbhaiyu
 
 <img align="right" src="https://github.com/halal-beef/res/blob/main/Main%20screen.png" width="600" alt="Winbhaiyu">
